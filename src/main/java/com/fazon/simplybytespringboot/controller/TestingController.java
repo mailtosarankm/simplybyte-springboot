@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class TestingController {
 
-    @GetMapping
+    @GetMapping("/")
     public String health() {
     return "Hello Everyone, Pipeline change pannitom";
+    }
+    @GetMapping("/add")
+    public int add() {
+        return 2 + 3;
     }
 
 }

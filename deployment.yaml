@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplybyte-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simplybyte
+  template:
+    metadata:
+      labels:
+        app: simplybyte
+    spec:
+      containers:
+      - name: simplybyte-container
+        image: mailtosarankm/simplybyte:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8090
+        volumeMounts:
+            - name: simplybyte-storage
+              mountPath: /app/data
+      volumes:
+        - name: simplybyte-storage
+          persistentVolumeClaim:
+            claimName: simplybyte-pvc
