@@ -68,11 +68,13 @@ pipeline {
         }
 
         stage('Deploy Kubernetes') {
-            steps {
-                bat 'kubectl apply -f deployment.yaml'
-                bat 'kubectl rollout restart deployment simplybyte-deployment'
-                bat 'kubectl rollout status deployment simplybyte-deployment'
-            }
+    steps {
+        bat 'kubectl apply -f deployment.yaml'
+
+        bat 'kubectl set image deployment/simplybyte-deployment simplybyte-container=%IMAGE_NAME%:%IMAGE_TAG%'
+
+        bat 'kubectl rollout status deployment/simplybyte-deployment'
         }
+      }
     }
 }
