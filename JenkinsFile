@@ -14,13 +14,13 @@ pipeline {
 
     stages {
 
-        stage('Git Clone') {
-            steps {
-                git branch: 'main',
-                credentialsId: 'github_simplybyte_credentials',
-                url: 'https://github.com/mailtosarankm/Simplybyte.git'
-            }
-        }
+       stage('Git Clone') {
+    steps {
+        git branch: 'main',
+        credentialsId: 'github_simplybyte_credentials',
+        url: 'https://github.com/mailtosarankm/simplybyte-springboot.git'
+    }
+}
 
         stage('Version Check') {
             steps {
