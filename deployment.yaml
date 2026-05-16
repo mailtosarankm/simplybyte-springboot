@@ -17,7 +17,9 @@ spec:
         image: mailtosarankm/simplybyte:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8090
+        - name: http
+        containerPort: {{ .Values.service.port }}
+        protocol: TCP
         volumeMounts:
             - name: simplybyte-storage
               mountPath: /app/data

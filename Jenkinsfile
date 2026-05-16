@@ -67,14 +67,14 @@ pipeline {
             }
         }
 
-        stage('Deploy Kubernetes') {
+        stage('Deploy using Helm') {
     steps {
-        bat 'kubectl apply -f deployment.yaml'
-
-        bat 'kubectl set image deployment/simplybyte-deployment simplybyte-container=%IMAGE_NAME%:%IMAGE_TAG%'
-
-        bat 'kubectl rollout status deployment/simplybyte-deployment'
-        }
-      }
+        bat '''
+        helm upgrade --install simplybyte-release .\\simplybyte-chart ^
+        --set image.repository=%IMAGE_NAME% ^
+        --set image.tag=%IMAGE_TAG%
+        '''
+    }
+}
     }
 }
