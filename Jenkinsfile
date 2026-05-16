@@ -76,5 +76,10 @@ pipeline {
         '''
     }
 }
+stage('Check Helm') {
+    steps {
+        bat 'helm version'
+    }
+}
     }
 }
