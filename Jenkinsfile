@@ -53,7 +53,7 @@ stage('SonarQube Analysis') {
             """
         }
     }
-}
+} 
 
         stage('Build Docker Image') {
             steps {
