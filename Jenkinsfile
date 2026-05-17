@@ -66,15 +66,16 @@ pipeline {
                 bat 'docker push %IMAGE_NAME%:%IMAGE_TAG%'
             }
         }
-        stage('Check Helm') {
+     stage('Check Helm') {
     steps {
         bat '"C:\\Users\\DELL\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Helm.Helm_Microsoft.Winget.Source_8wekyb3d8bbwe\\windows-amd64\\helm.exe" version'
     }
 }
-        stage('Deploy using Helm') {
+
+stage('Deploy using Helm') {
     steps {
         bat '''
-        helm upgrade --install simplybyte-release .\\simplybyte-chart ^
+        "C:\\Users\\DELL\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Helm.Helm_Microsoft.Winget.Source_8wekyb3d8bbwe\\windows-amd64\\helm.exe" upgrade --install simplybyte-release .\\simplybyte-chart ^
         --set image.repository=%IMAGE_NAME% ^
         --set image.tag=%IMAGE_TAG%
         '''
