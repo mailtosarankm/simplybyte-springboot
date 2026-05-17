@@ -43,18 +43,18 @@ tools {
         }
 stage('SonarQube Analysis') {
     steps {
-        withSonarQubeEnv('sonarqube') {
+        withSonarQubeEnv('SonarServer') {
             bat """
-            %SCANNER_HOME%\\bin\\sonar-scanner.bat ^
+            sonar-scanner ^
             -Dsonar.projectKey=simplybyte ^
             -Dsonar.projectName=simplybyte ^
-            -Dsonar.sources=. ^
+            -Dsonar.sources=src ^
             -Dsonar.java.binaries=target ^
             -Dsonar.exclusions=**/simplybyte-chart/**
             """
         }
     }
-} 
+}
         stage('Build Docker Image') {
             steps {
                 bat 'docker build -t %IMAGE_NAME%:%IMAGE_TAG% .'
