@@ -4,6 +4,7 @@ pipeline {
     tools {
         git 'Git'
         maven 'mvn3.9.9'
+sonarRunner 'sonar-scanner'
     }
 
     environment {
@@ -40,6 +41,18 @@ pipeline {
                 bat 'mvn clean install -DskipTests=true'
             }
         }
+stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('SonarServer') {
+            bat '''
+            mvn sonar:sonar ^
+            -Dsonar.projectKey=simplybyte ^
+            -Dsonar.projectName=simplybyte ^
+            -Dsonar.host.url=http://localhost:9000
+            '''
+        }
+    }
+}
 
         stage('Build Docker Image') {
             steps {
