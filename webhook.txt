@@ -3,3 +3,4 @@ final
 webhook-final 
 auto-final 
 helmfix 
+auto 
