@@ -66,7 +66,11 @@ pipeline {
                 bat 'docker push %IMAGE_NAME%:%IMAGE_TAG%'
             }
         }
-
+        stage('Check Helm') {
+    steps {
+        bat 'helm version'
+    }
+}
         stage('Deploy using Helm') {
     steps {
         bat '''
@@ -76,10 +80,6 @@ pipeline {
         '''
     }
 }
-stage('Check Helm') {
-    steps {
-        bat 'helm version'
-    }
-}
+
     }
 }
