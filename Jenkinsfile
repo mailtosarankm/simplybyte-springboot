@@ -68,7 +68,7 @@ pipeline {
         }
         stage('Check Helm') {
     steps {
-        bat 'helm version'
+        bat '"C:\Users\DELL\AppData\Local\Microsoft\WinGet\Packages\Helm.Helm_Microsoft.Winget.Source_8wekyb3d8bbwe\windows-amd64\helm.exe" version'
     }
 }
         stage('Deploy using Helm') {
