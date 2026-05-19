@@ -4,13 +4,14 @@ pipeline {
 tools {
     git 'Git'
     maven 'mvn3.9.9'
+    
 }
 
     environment {
         IMAGE_NAME = 'mailtosarankm/simplybyte'
         IMAGE_TAG = "${BUILD_NUMBER}"
         CONTAINER_NAME='simplybyte-container'
-        SCANNER_HOME = tool 'sonar-scanner'
+        SCANNER_HOME=tool('sonar-scanner')
     }
 
     stages {
@@ -45,7 +46,7 @@ stage('SonarQube Analysis') {
     steps {
         withSonarQubeEnv('SonarServer') {
             bat """
-            sonar-scanner ^
+            %SCANNER_HOME%\\bin\\sonar-scanner.bat ^
             -Dsonar.projectKey=simplybyte ^
             -Dsonar.projectName=simplybyte ^
             -Dsonar.sources=src ^
